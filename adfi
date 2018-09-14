@@ -1,0 +1,57 @@
+#!/bin/bash
+#import sys;
+
+function scan {
+	echo "Scanning $1"
+	list=$(nmap --open $1 -p 23 | grep -o -E '([0-9]{1,3}[\.]){3}[0-9]{1,3}')
+ 	for line in $list
+ 	do
+  		echo "Trying $line"
+  		./try_telnet.exp $line admin admin 2> /dev/null > /dev/null #  | grep -e "FOUND" #-e "Trying"
+  		if [ "$?" -eq "9" ]
+		then
+			echo -e "\033[31mfound $line admin:admin \033[0m"
+			if [ -n "$output" ]
+			then
+				echo "$line admin:admin" >> $output
+			fi
+		fi
+	done 
+}
+
+echo $*
+
+while [ -n "$1" ]
+do
+ case "$1" in
+ -a) addr=$2
+     shift;;
+ -i) input=$2
+     shift;;
+ -o) output=$2
+     shift;;
+ *) echo "$1 is not an option";;
+esac
+ shift
+done
+
+# If specified a file for output, we make it empty
+if [ -n "$output" ]
+then
+ 	echo "" > $output
+fi
+
+# If the range of addresses is transferred in parameters
+if [ -n "$addr" ]
+then
+ 	scan $addr
+fi
+
+# If the range of addresses is specified in the file
+if [ -n "$input" ]
+then
+	while read line;
+	do
+ 		scan $line
+	done < $input
+fi

@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+set SERVER	[lindex $argv 0];
+set USER 	[lindex $argv 1];
+set PASS 	[lindex $argv 2];
+
+set timeout 1
+
+spawn telnet $SERVER
+expect ":"
+send  "$USER\r"
+expect ":"
+send  "$PASS\r"
+send  "abc"
+expect "command" {exit 9}
+exit 0
