@@ -1,6 +1,8 @@
 # ADFI
 **ADFI** - Утилита для поиска в сети устройств, использующих стандартные логин/пароль для доступа по telnet. <br/>
 **Текущая версия:** 1.0 <br/>
+**Дисклеймер:**
+данная утилита была создана в образовательных целях. Автор не несет ответственности за ущерб, причененный пользователем при ее использовании.
 
 **Функционал, который есть сейчас:** <br/>
 - поиск со связкой логин:admin пароль:admin. <br/>
@@ -34,6 +36,7 @@
     ./adfi -a 192.168.0.0/24
     ./adfi -i ./test_list.txt -o ./result
     ./adfi -a 192.168.0.0-255 -i ./test_list.txt -o ./result
+  
 
 
 
@@ -41,6 +44,8 @@
 
 **ADFI** - Utility to search the network for devices using standard login / password for telnet access. <br/>
 **Current version:** 1.0 <br/>
+**Disclaimer:**
+this utility was created for educational purposes. The author does not bear responsibility for the damage caused by the user when using it.
 
 **Functionality, which is now:** <br/>
 - search with a binder login: admin password: admin. <br/>
@@ -74,5 +79,7 @@ Example:
     ./adfi -a 192.168.0.0/24
     ./adfi -i ./test_list.txt -o ./result
     ./adfi -a 192.168.0.0-255 -i ./test_list.txt -o ./result
+    
+This utility was created for educational purposes. The author does not bear responsibility for the damage caused by the user when using it.
     
 
