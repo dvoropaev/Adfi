@@ -1,5 +1,5 @@
 # ADFI
-**ADFI** - Утилита для поиска в сети устройств, использующих использующих стандартные логин/пароль для доступа по telnet. <br/>
+**ADFI** - Утилита для поиска в сети устройств, использующих стандартные логин/пароль для доступа по telnet. <br/>
 **Текущая версия:** 1.0 <br/>
 
 **Функционал, который есть сейчас:** <br/>
@@ -39,7 +39,7 @@
 
 # Google translate:
 
-**ADFI** - Utility to search the network for devices using using standard login / password for telnet access. <br/>
+**ADFI** - Utility to search the network for devices using standard login / password for telnet access. <br/>
 **Current version:** 1.0 <br/>
 
 **Functionality, which is now:** <br/>
