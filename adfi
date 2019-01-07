@@ -6,8 +6,8 @@ echo "Source: https://github.com/dvoropaev/adfi"
 
 function scan {
 	echo "Scanning $1"
-	list=$(nmap --open $1 -p 23 | grep -o -E '([0-9]{1,3}[\.]){3}[0-9]{1,3}')
- 	for line in $list
+	zmap $1 -p 23 -o /tmp/zmap
+ 	while read line
  	do
   		echo "Trying $line"
   		./try_telnet.exp $line admin admin 2> /dev/null > /dev/null #  | grep -e "FOUND" #-e "Trying"
@@ -19,7 +19,7 @@ function scan {
 				echo "$line admin:admin" >> $output
 			fi
 		fi
-	done 
+	done < /tmp/zmap
 }
 
 
