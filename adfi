@@ -20,7 +20,10 @@ function scan {
 			if [ "$?" -eq "9" ]
 			then
 				echo -e "\033[31mfound $target $login : $pass \033[0m"
-				echo "$target $login : $pass" >> out.txt
+                if [ -n "$output" ]
+                then
+                 	echo "$target $login : $pass" >> $output
+                fi
 			fi
 		done < defLoginPairs.txt
 	done 
