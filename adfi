@@ -7,18 +7,22 @@ echo "Source: https://github.com/dvoropaev/adfi"
 function scan {
 	echo "Scanning $1"
 	list=$(nmap --open $1 -p 23 | grep -o -E '([0-9]{1,3}[\.]){3}[0-9]{1,3}')
- 	for line in $list
+ 	for target in $list
  	do
-  		echo "Trying $line"
-  		./try_telnet.exp $line admin admin 2> /dev/null > /dev/null #  | grep -e "FOUND" #-e "Trying"
-  		if [ "$?" -eq "9" ]
-		then
-			echo -e "\033[31mfound $line admin:admin \033[0m"
-			if [ -n "$output" ]
+  		echo "Trying $target"
+  		while read logpas
+		do
+			array=($(echo $logpas | tr ":" "\n"))
+			login=${array[0]}
+			pass=${array[1]}
+			echo "Trying $target $login : $pass"
+			./try_telnet.exp $target $login $pass 2> /dev/null > /dev/null #  | grep -e "FOUND" #-e "Trying"
+			if [ "$?" -eq "9" ]
 			then
-				echo "$line admin:admin" >> $output
+				echo -e "\033[31mfound $target $login : $pass \033[0m"
+				echo "$target $login : $pass" >> out.txt
 			fi
-		fi
+		done < defLoginPairs.txt
 	done 
 }
 
